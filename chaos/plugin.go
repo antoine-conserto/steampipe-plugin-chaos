@@ -27,6 +27,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			ShouldIgnoreErrorFunc: shouldIgnoreError,
 		},
 		TableMap: map[string]*plugin.Table{
+			"chaos_bug_cache_sum":                                          listBugCacheSumTable(),
 			"chaos_very_high_row_count":                                    buildTable(&chaosTable{name: "chaos_very_high_row_count", description: "Chaos table to test steampipe with very high row count", listBuildConfig: &listBuildConfig{rowCount: 1000000}, cache: &plugin.TableCacheOptions{Enabled: true}}),
 			"chaos_high_row_count":                                         buildTable(&chaosTable{name: "chaos_high_row_count", description: "Chaos table to test steampipe with high row count", listBuildConfig: &listBuildConfig{rowCount: 5000}, cache: &plugin.TableCacheOptions{Enabled: true}}),
 			"chaos_high_column_count":                                      buildTable(&chaosTable{name: "chaos_high_column_count", description: "Chaos table to test steampipe with high column count", listBuildConfig: &listBuildConfig{columnCount: 100}}),
